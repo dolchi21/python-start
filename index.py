@@ -1,8 +1,13 @@
 from lib.download import download
+import cv2
+import numpy as np
 
-source = 'https://farm5.staticflickr.com/4259/35163667010_8bfcaef274_k_d.jpg'
-dest = 'image.jpg'
+source = 'https://opencv-python-tutroals.readthedocs.io/en/latest/_static/opencv-logo-white.png'
 
-file = download(source, dest)
+binaryData = download(source)
+arr = np.fromstring(binaryData, dtype=np.uint8)
+img = cv2.imdecode(arr, 1)
 
-print(file)
+cv2.imshow('image', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
